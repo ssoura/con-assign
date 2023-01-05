@@ -7,13 +7,18 @@ export const userSlice = createSlice({
   initialState: {
     users: [],
     userInfo: [],
+    isLoading: false,
   },
   reducers: {
     getUserInfo: (state, action) => {
       state.userInfo = action.payload;
+      state.isLoading = false;
     },
     getUsers: (state, action) => {
       state.users = action.payload;
+    },
+    isLoading: (state) => {
+      state.isLoading = true;
     },
   },
 });
@@ -36,7 +41,7 @@ export const getUserInfoAsync = (data) => async (dispatch) => {
   }
 };
 
-export const { getUsers, getUserInfo } = userSlice.actions;
+export const { getUsers, getUserInfo, isLoading } = userSlice.actions;
 export const showUsers = (state) => state.user.users;
 export const showUserInfo = (state) => state.user.userInfo;
 export default userSlice.reducer;
